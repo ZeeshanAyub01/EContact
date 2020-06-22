@@ -1,0 +1,10 @@
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\bin\Debug\EContact.exe.config
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\bin\Debug\EContact.exe
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\bin\Debug\EContact.pdb
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\obj\Debug\EContact.csprojAssemblyReference.cache
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\obj\Debug\EContact.EContact.resources
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\obj\Debug\EContact.Properties.Resources.resources
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\obj\Debug\EContact.csproj.GenerateResource.cache
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\obj\Debug\EContact.csproj.CoreCompileInputs.cache
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\obj\Debug\EContact.exe
+D:\Parhai\Online tutorials\Youtube\Simple_C#_DT_App\EContact\EContact\obj\Debug\EContact.pdb
