@@ -1,4 +1,5 @@
 ﻿using System;
+using Npgsql;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -22,7 +23,12 @@ namespace EContact.EcontactClasses
         public string Address { get; set; }
         public string Gender { get; set; }
 
-        static string myconnstrng = ConfigurationManager.ConnectionStrings["connstrng"].ConnectionString;
+        //static string myconnstrng = ConfigurationManager.ConnectionStrings["connstrng"].ConnectionString;
+        private string myconnstrng = String.Format("Server=\"PostgreSQL_10\";Port=5432;Database=EContact;User Id=postgres;Password=progStuff;");
+        //private NpgsqlConnection conn = new NpgsqlConnection("Server=\"localhost\";Port=5432;Database=test;User Id=postgres;Password=progStuff;");
+        private string sql;
+        private NpgsqlCommand cmd;
+        private DataTable dt;
 
         public DataTable Select()
         {
@@ -33,20 +39,7 @@ namespace EContact.EcontactClasses
             {
                 //Writing ou SQL query
                 string sql = "SELECT * FROM Contacts_Info";
-                //SqlCommand cmd = new SqlCommand(sql, conn);
-                OdbcCommand cmd = new OdbcCommand(sql);
-                using (OdbcConnection connection = new OdbcConnection(myconnstrng))
-                {
-                    cmd.Connection = connection;
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
-
-                    // The connection is automatically closed at
-                    // the end of the Using block.
-                }
-                //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                //conn.Open();
-                //adapter.Fill(dt);
+                
             }
             catch (Exception ex)
             {
@@ -102,75 +95,5 @@ namespace EContact.EcontactClasses
             return isSuccess;
         }
 
-    //public bool Update(ContactClass c)
-    //{
-    //    bool isSuccess = false;
-    //    SqlConnection conn = new SqlConnection(myconnstrng);
-    //    try
-    //    {
-    //        string sql = "UPDATE Contacts_Info SET FirstName=@FirstName, LastName=@LastName, ContactInfo=@ContactInfo, Address=@Address, Gender=@Gender WHERE ContactID=@ContactID";
-
-    //        SqlCommand cmd = new SqlCommand(sql, conn);
-    //        cmd.Parameters.AddWithValue("@FirstName", c.FirstName);
-    //        cmd.Parameters.AddWithValue("@LastName", c.LastName);
-    //        cmd.Parameters.AddWithValue("@ContactNo", c.ContactNo);
-    //        cmd.Parameters.AddWithValue("@Address", c.Address);
-    //        cmd.Parameters.AddWithValue("@Gender", c.Gender);
-    //        cmd.Parameters.AddWithValue("@ContactID", c.ContactID);
-
-    //        conn.Open();
-
-    //        int rows = cmd.ExecuteNonQuery();
-    //        if (rows > 0)
-    //        {
-    //            isSuccess = true;
-    //        }
-    //        else
-    //        {
-    //            isSuccess = false;
-    //        }
-    //    }
-    //    catch
-    //    {
-
-    //    }
-    //    finally
-    //    {
-    //        conn.Close();
-    //    }
-    //    return isSuccess;
-    //}
-
-    //public bool Delete(ContactClass c)
-    //{
-    //    bool isSuccess = false;
-    //    SqlConnection conn = new SqlConnection(myconnstrng);
-    //    try
-    //    {
-    //        string sql = "DELETE FROM Contacts_Info WHERE ContactID=@ContactID";
-    //        SqlCommand cmd = new SqlCommand(sql, conn);
-    //        cmd.Parameters.AddWithValue("@ContactID", c.ContactID);
-    //        conn.Open();
-
-    //        int rows = cmd.ExecuteNonQuery();
-    //        if (rows > 0)
-    //        {
-    //            isSuccess = true;
-    //        }
-    //        else
-    //        {
-    //            isSuccess = false;
-    //        }
-    //    }
-    //    catch
-    //    {
-
-    //    }
-    //    finally
-    //    {
-    //        conn.Close();
-    //    }
-    //    return isSuccess;
-    //}
-}
+    }
 }

@@ -51,6 +51,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.db_test = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -276,11 +277,22 @@
             this.pictureBox1.TabIndex = 22;
             this.pictureBox1.TabStop = false;
             // 
+            // db_test
+            // 
+            this.db_test.Location = new System.Drawing.Point(21, 19);
+            this.db_test.Name = "db_test";
+            this.db_test.Size = new System.Drawing.Size(116, 36);
+            this.db_test.TabIndex = 23;
+            this.db_test.Text = "DB TEST";
+            this.db_test.UseVisualStyleBackColor = true;
+            this.db_test.Click += new System.EventHandler(this.db_test_Click);
+            // 
             // EContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 450);
+            this.Controls.Add(this.db_test);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblSearch);
@@ -339,6 +351,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button db_test;
     }
 }
 
