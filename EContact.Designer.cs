@@ -47,13 +47,14 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv1 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblSearch = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.db_test = new System.Windows.Forms.Button();
+            this.ViewAll_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -239,13 +240,13 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // dataGridView1
+            // dgv1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(355, 117);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(364, 239);
-            this.dataGridView1.TabIndex = 19;
+            this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv1.Location = new System.Drawing.Point(355, 117);
+            this.dgv1.Name = "dgv1";
+            this.dgv1.Size = new System.Drawing.Size(364, 239);
+            this.dgv1.TabIndex = 19;
             // 
             // textBox1
             // 
@@ -287,16 +288,29 @@
             this.db_test.UseVisualStyleBackColor = true;
             this.db_test.Click += new System.EventHandler(this.db_test_Click);
             // 
+            // ViewAll_btn
+            // 
+            this.ViewAll_btn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ViewAll_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ViewAll_btn.Location = new System.Drawing.Point(427, 407);
+            this.ViewAll_btn.Name = "ViewAll_btn";
+            this.ViewAll_btn.Size = new System.Drawing.Size(207, 31);
+            this.ViewAll_btn.TabIndex = 24;
+            this.ViewAll_btn.Text = "View all Contacts";
+            this.ViewAll_btn.UseVisualStyleBackColor = false;
+            this.ViewAll_btn.Click += new System.EventHandler(this.button2_Click);
+            // 
             // EContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 450);
+            this.Controls.Add(this.ViewAll_btn);
             this.Controls.Add(this.db_test);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblSearch);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgv1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -320,7 +334,7 @@
             this.Text = " ";
             this.Load += new System.EventHandler(this.EContact_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -347,11 +361,12 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button db_test;
+        private System.Windows.Forms.Button ViewAll_btn;
     }
 }
 

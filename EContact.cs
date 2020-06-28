@@ -1,5 +1,4 @@
-﻿using EContact.EcontactClasses;
-using System;
+﻿using System;
 using Npgsql;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EContact.EcontactClasses;
 
 namespace EContact
 {
@@ -22,11 +22,12 @@ namespace EContact
         private NpgsqlConnection conn;
         private string sql;
         private NpgsqlCommand cmd;
-
+        DataTable dt;
         ContactClass c = new ContactClass();
         private void EContact_Load(object sender, EventArgs e)
         {
-           conn = new NpgsqlConnection("Server=\"localhost\";Port=5432;Database=test;User Id=postgres;Password=progStuff;");
+            //conn = new NpgsqlConnection("Server=\"localhost\";Port=5432;Database=test;User Id=postgres;Password=progStuff;");
+            //conn = new NpgsqlConnection(myconnstrng);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -81,14 +82,36 @@ namespace EContact
         {
             
             conn.Open();
-            sql = @"INSERT INTO Items (item_id, item_name)
-VALUES (3, 'Eggs');";
+            sql = @"SELECT * FROM Items;";
             cmd = new NpgsqlCommand(sql, conn);
-        
-            int i = cmd.ExecuteNonQuery();
-            Console.WriteLine("=> " + i);
-
+            dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            //int i = cmd.ExecuteNonQuery();
+            //Console.WriteLine("=> " + i);
             conn.Close();
+            dgv1.DataSource = null;
+            dgv1.DataSource = dt;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dt = c.Select();
+                dgv1.DataSource = null;
+                dgv1.DataSource = dt;
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+
+            }
+
+
         }
     }
 }

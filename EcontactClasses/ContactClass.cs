@@ -24,8 +24,9 @@ namespace EContact.EcontactClasses
         public string Gender { get; set; }
 
         //static string myconnstrng = ConfigurationManager.ConnectionStrings["connstrng"].ConnectionString;
-        private string myconnstrng = String.Format("Server=\"PostgreSQL_10\";Port=5432;Database=EContact;User Id=postgres;Password=progStuff;");
+        private string myconnstrng = "Server=\"localhost\";Port=5432;Database=EContact;User Id=postgres;Password=progStuff;";
         //private NpgsqlConnection conn = new NpgsqlConnection("Server=\"localhost\";Port=5432;Database=test;User Id=postgres;Password=progStuff;");
+        private NpgsqlConnection conn;
         private string sql;
         private NpgsqlCommand cmd;
         private DataTable dt;
@@ -33,21 +34,27 @@ namespace EContact.EcontactClasses
         public DataTable Select()
         {
             //SqlConnection conn = new SqlConnection(myconnstrng);
-            
+            conn = new NpgsqlConnection(myconnstrng);
             DataTable dt = new DataTable();
             try
             {
                 //Writing ou SQL query
-                string sql = "SELECT * FROM Contacts_Info";
-                
+                sql = @"SELECT * FROM ContactsInfo";
+                cmd = new NpgsqlCommand(sql, conn);
+                dt = new DataTable();
+                conn.Open();
+                dt.Load(cmd.ExecuteReader());
+                //int i = cmd.ExecuteNonQuery();
+                //Console.WriteLine("=> " + i);
+
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
             finally
             {
-                //conn.Close();
+                conn.Close();
             }
             return dt;
         }
@@ -56,13 +63,14 @@ namespace EContact.EcontactClasses
         {
             bool isSuccess = false;
             int numRows = 0;
-            OdbcConnection connection = new OdbcConnection(myconnstrng);
+            conn = new NpgsqlConnection(myconnstrng);
 
             try
             {
-                string sql = "INSERT INTO Contacts_Info (FirstName, LastName, ContactNo, Address, Gender) VALUES (@FirstName, @LastName, @ContactNo, @Address, @Gender)";
+                sql = "INSERT INTO ContactsInfo (FirstName, LastName, ContactNo, Address, Gender) VALUES (@FirstName, @LastName, @ContactNo, @Address, @Gender)";
                 //SqlCommand cmd = new SqlCommand(sql, conn);
-                OdbcCommand cmd = new OdbcCommand(sql);
+                
+                cmd = new NpgsqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@FirstName", c.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", c.LastName);
@@ -70,8 +78,12 @@ namespace EContact.EcontactClasses
                 cmd.Parameters.AddWithValue("@Address", c.Address);
                 cmd.Parameters.AddWithValue("@Gender", c.Gender);
 
-                cmd.Connection = connection;
-                connection.Open();
+                Console.WriteLine("=> " + c.FirstName);
+                Console.WriteLine("=> " + c.LastName);
+                Console.WriteLine("=> " + c.ContactNo);
+                Console.WriteLine("=> " + c.Address);
+                Console.WriteLine("=> " + c.Gender);
+                conn.Open();
                 numRows = cmd.ExecuteNonQuery();
                 //int rows = cmd.ExecuteNonQuery();
 
@@ -86,11 +98,11 @@ namespace EContact.EcontactClasses
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
             finally
             {
-                connection.Close();
+                conn.Close();
             }
             return isSuccess;
         }
