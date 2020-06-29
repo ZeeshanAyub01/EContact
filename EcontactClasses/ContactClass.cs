@@ -39,7 +39,7 @@ namespace EContact.EcontactClasses
             try
             {
                 //Writing ou SQL query
-                sql = @"SELECT * FROM ContactsInfo";
+                sql = @"SELECT * FROM ContactsInfo ORDER BY ContactID";
                 cmd = new NpgsqlCommand(sql, conn);
                 dt = new DataTable();
                 conn.Open();
@@ -78,11 +78,6 @@ namespace EContact.EcontactClasses
                 cmd.Parameters.AddWithValue("@Address", c.Address);
                 cmd.Parameters.AddWithValue("@Gender", c.Gender);
 
-                Console.WriteLine("=> " + c.FirstName);
-                Console.WriteLine("=> " + c.LastName);
-                Console.WriteLine("=> " + c.ContactNo);
-                Console.WriteLine("=> " + c.Address);
-                Console.WriteLine("=> " + c.Gender);
                 conn.Open();
                 numRows = cmd.ExecuteNonQuery();
                 //int rows = cmd.ExecuteNonQuery();
@@ -104,6 +99,84 @@ namespace EContact.EcontactClasses
             {
                 conn.Close();
             }
+            return isSuccess;
+        }
+
+        public bool update(ContactClass c)
+        {
+            bool isSuccess = false;
+
+            int numRows = 0;
+            conn = new NpgsqlConnection(myconnstrng);
+
+            try
+            {
+                sql = "Update ContactsInfo SET FirstName=@FirstName, LastName=@LastName, ContactNo=@ContactNo, Address=@Address, Gender=@Gender WHERE ContactID=@ContactID";
+                
+                cmd = new NpgsqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@FirstName", c.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", c.LastName);
+                cmd.Parameters.AddWithValue("@ContactNo", c.ContactNo);
+                cmd.Parameters.AddWithValue("@Address", c.Address);
+                cmd.Parameters.AddWithValue("@Gender", c.Gender);
+                cmd.Parameters.AddWithValue("@ContactID", c.ContactID);
+
+                conn.Open();
+                numRows = cmd.ExecuteNonQuery();
+
+                if (numRows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return isSuccess;
+        }
+
+        public bool Delete(ContactClass c)
+        {
+            bool isSuccess = false;
+            int numRows = 0;
+            sql = "DELETE FROM ContactsInfo WHERE ContactID=@ContactID";
+
+            try
+            {
+                cmd = new NpgsqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@ContactID", c.ContactID);
+                conn.Open();
+                numRows = cmd.ExecuteNonQuery();
+
+                if (numRows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
             return isSuccess;
         }
 
